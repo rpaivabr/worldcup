@@ -1,0 +1,35 @@
+<div class="container">
+  <!-- Título das Fases e Navegação -->
+  <div class="row">
+    <div class="col-md-3 text-left">
+      <a [routerLink]="['/first-stage']" class="btn btn-info">
+        <i class="fa fa-angle-left"></i> First stage</a>
+    </div>
+    <div class="col text-center">
+      <h3>Round of 16</h3>
+    </div>
+    <div class="col-md-3 text-right">
+      <a [routerLink]="['/quarter-finals']" class="btn btn-info">Quarter-Finals
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Jogos -->
+  <div class="card" *ngFor="let match of matches">
+    <div class="card-body">
+      <div class="row text-center">
+        <div class="col-md-2">Moscow</div>
+        <div class="col-md-4">{{ match.datetime | date: 'dd/MM/yyyy HH:mm' }}h</div>
+        <div class="col-md-2" [class.winner]="match.home_team_country == match.winner">{{ match.home_team_country }}</div>
+        <div class="col-md-2 font-weight-bold">{{ match.home_team.goals }} x {{ match.away_team.goals }}
+          <small *ngIf="match.home_team.penalties != 0">
+            <br>({{ match.home_team.penalties }}) Penalties ({{ match.away_team.penalties }})</small>
+        </div>
+        <div class="col-md-2" [class.winner]="match.away_team_country == match.winner">{{ match.away_team_country }}</div>
+      </div>
+    </div>
+  </div>
+  <!-- /Jogos -->
+
+</div>
